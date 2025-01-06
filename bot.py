@@ -1,6 +1,7 @@
 import discord
 import os
 import pandas as pd
+import asyncio
 from discord.ext import commands
 import re
 
