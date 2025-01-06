@@ -140,4 +140,4 @@ async def search_anime(ctx, *, anime_name: str):
         embed.set_footer(text="Dữ liệu được cập nhật đến 5/1/2025")
         await ctx.send(embed=embed)
 
-client.run(os.getenv('ANIME'))
+bot.run(os.getenv('ANIME'))
