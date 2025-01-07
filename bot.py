@@ -93,7 +93,7 @@ async def on_message(message):
                     embed = discord.Embed(title=f"📺 {row['name']}", description=f"Tập {episode}", color=discord.Color.from_rgb(52, 152, 219))
                     embed.add_field(name="🔗 Link", value=row['link'], inline=False)
                     embed.set_thumbnail(url=THUMBNAIL_URL)
-                    embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
+                    embed.set_footer(text="Dữ liệu cập nhật đến 5/1/2025")
                     await message.channel.send(embed=embed)
             else:
                 await message.channel.send(f"Không tìm thấy anime với từ khóa '{keywords}' tập {episode}.")
