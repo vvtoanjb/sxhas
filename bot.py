@@ -9,7 +9,7 @@ import re
 BOT_TOKEN = "YOUR_BOT_TOKEN"  # Thay thế bằng token bot của bạn
 ANIME_CSV_FILE = 'anime.csv'
 COMMAND_PREFIX = '!'
-ALLOWED_CHANNEL_ID = 1313488880808235120  # Thay thế bằng ID kênh
+ALLOWED_CHANNEL_ID = [1313488880808235120, 1326048067073347687]  # Thay thế bằng ID kênh
 THUMBNAIL_URL = "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e966882e-aa10-42dc-8402-f6211384a5ac/anim=false,width=450/00001-871932184.jpeg"
 
 # --- Biến toàn cục ---
