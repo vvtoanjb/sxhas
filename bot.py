@@ -101,7 +101,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # --- Commands ---
-@bot.command(name='anime')
+@bot.command(name='ani')
 @is_allowed_channel()
 async def search_anime(ctx, *, anime_name: str):
     """Tìm kiếm thông tin anime."""
