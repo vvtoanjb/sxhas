@@ -112,7 +112,7 @@ async def search_anime(ctx, *, anime_name: str):
     result = anime_data[anime_data['name'].str.contains(anime_name, case=False, na=False)]
 
     if result.empty:
-        await ctx.send("Không tìm thấy anime nào.")
+        await ctx.send("Dữ liệu anime chưa được tải hoặc bị lỗi.")
         return
 
     embed = discord.Embed(title=f"🔍 Kết quả tìm kiếm cho '{anime_name}'", color=discord.Color.from_rgb(231, 76, 60))
@@ -121,7 +121,7 @@ async def search_anime(ctx, *, anime_name: str):
     field_count = 0
     for index, row in result.iterrows():
         if field_count >= 25:
-            embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
+            embed.set_footer(text="Dữ liệu cập nhật đến 5/1/2025")
             await ctx.send(embed=embed)
 
             embed = discord.Embed(title=f"🔍 Kết quả tìm kiếm cho '{anime_name}' (tiếp theo)", color=discord.Color.from_rgb(231, 76, 60))
@@ -132,7 +132,7 @@ async def search_anime(ctx, *, anime_name: str):
         field_count += 1
 
     if field_count > 0:
-        embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
+        embed.set_footer(text="Dữ liệu cập nhật đến 5/1/2025")
         await ctx.send(embed=embed)
 
 bot.run(os.getenv('ANIME'))
