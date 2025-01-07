@@ -1,7 +1,5 @@
 import discord
-import os
 import pandas as pd
-import asyncio
 from discord.ext import commands
 import re
 
@@ -9,7 +7,7 @@ import re
 BOT_TOKEN = "YOUR_BOT_TOKEN"  # Thay thế bằng token bot của bạn
 ANIME_CSV_FILE = 'anime.csv'
 COMMAND_PREFIX = '!'
-ALLOWED_CHANNEL_ID = [1313488880808235120, 1326048067073347687]  # Thay thế bằng ID kênh
+ALLOWED_CHANNEL_IDS = [1326048067073347687, 1313488880808235120]  # Thay thế bằng các ID kênh
 THUMBNAIL_URL = "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e966882e-aa10-42dc-8402-f6211384a5ac/anim=false,width=450/00001-871932184.jpeg"
 
 # --- Biến toàn cục ---
@@ -45,7 +43,7 @@ def search_by_keywords_and_episode(keywords, episode):
     result = filtered_anime[filtered_anime['episodes'].astype(str) == str(episode)]
 
     if not result.empty:
-        return result.head(3) # Chỉ lấy 3 dòng để tránh vượt quá giới hạn discord
+        return result.head(3)
     else:
         return None
 
@@ -53,7 +51,7 @@ def search_by_keywords_and_episode(keywords, episode):
 def is_allowed_channel():
     """Decorator kiểm tra kênh cho phép."""
     async def predicate(ctx):
-        return ctx.channel.id == ALLOWED_CHANNEL_ID
+        return ctx.channel.id in ALLOWED_CHANNEL_IDS
     return commands.check(predicate)
 
 # --- Bot initialization ---
@@ -70,7 +68,7 @@ async def on_ready():
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-        await ctx.send(f"Lệnh này chỉ hoạt động trong kênh <#{ALLOWED_CHANNEL_ID}>.")
+        await ctx.send(f"Lệnh này chỉ hoạt động trong các kênh được cho phép.")
     else:
         print(f"Lỗi: {error}")
 
@@ -79,7 +77,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if message.channel.id == ALLOWED_CHANNEL_ID:
+    if message.channel.id in ALLOWED_CHANNEL_IDS: # Thay đổi
         content = message.content.lower()
         match = re.search(r"(.+)\s+tập\s+(\d+)", content)
         if match:
@@ -94,7 +92,7 @@ async def on_message(message):
                     embed = discord.Embed(title=f"📺 {row['name']}", description=f"Tập {episode}", color=discord.Color.from_rgb(52, 152, 219))
                     embed.add_field(name="🔗 Link", value=row['link'], inline=False)
                     embed.set_thumbnail(url=THUMBNAIL_URL)
-                    embed.set_footer(text="Dữ liệu được cập nhật đến 5/1/2025")
+                    embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
                     await message.channel.send(embed=embed)
             else:
                 await message.channel.send(f"Không tìm thấy anime với từ khóa '{keywords}' tập {episode}.")
@@ -110,23 +108,19 @@ async def search_anime(ctx, *, anime_name: str):
         await ctx.send("Dữ liệu anime chưa được tải hoặc bị lỗi.")
         return
 
-    # Tìm kiếm anime dựa trên từ khóa
     result = anime_data[anime_data['name'].str.contains(anime_name, case=False, na=False)]
 
     if result.empty:
         await ctx.send("Không tìm thấy anime nào.")
         return
-    
-    # Tạo embed ban đầu
+
     embed = discord.Embed(title=f"🔍 Kết quả tìm kiếm cho '{anime_name}'", color=discord.Color.from_rgb(231, 76, 60))
     embed.set_thumbnail(url=THUMBNAIL_URL)
 
-    # Duyệt qua các kết quả và thêm vào embed
     field_count = 0
     for index, row in result.iterrows():
-        # Nếu số lượng field đạt tới giới hạn, gửi embed hiện tại và tạo embed mới
         if field_count >= 25:
-            embed.set_footer(text="Dữ liệu được cập nhật đến 5/1/2025")
+            embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
             await ctx.send(embed=embed)
 
             embed = discord.Embed(title=f"🔍 Kết quả tìm kiếm cho '{anime_name}' (tiếp theo)", color=discord.Color.from_rgb(231, 76, 60))
@@ -136,9 +130,8 @@ async def search_anime(ctx, *, anime_name: str):
         embed.add_field(name=f"**{row['name']}**", value=f"📺 Tập: {row['episodes']}\n🔗 Link: {row['link']}", inline=False)
         field_count += 1
 
-    # Gửi embed cuối cùng nếu có
     if field_count > 0:
-        embed.set_footer(text="Dữ liệu được cập nhật đến 5/1/2025")
+        embed.set_footer(text="Dữ liệu từ nguồn anime của bạn")
         await ctx.send(embed=embed)
 
 bot.run(os.getenv('ANIME'))
