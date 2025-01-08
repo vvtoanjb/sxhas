@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 CHANNEL_IDS = [1295014200967561328, 1295019163076530319, 1295293677828309032, 1170009154648293388, 1170681432776130650]  # WALL và MEME
 
 # ID của người dùng được phép gửi tin nhắn không phải ảnh
-ALLOWED_USER_IDS = aniko#1630 # Thay thế bằng ID người dùng thực tế
+ALLOWED_USER_IDS = 1292398028887560193 # Thay thế bằng ID người dùng thực tế
 
 @bot.event
 async def on_message(message):
