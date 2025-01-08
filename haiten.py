@@ -22,7 +22,7 @@ def is_allowed_channel():
     return commands.check(predicate)
 
 
-@tasks.loop(seconds=10)  # Chạy mỗi 10 giây
+@tasks.loop(seconds=60)  # Chạy mỗi 10 giây
 async def send_waifu_image():
     try:
         # Chọn ngẫu nhiên một loại ảnh
