@@ -9,7 +9,7 @@ sfw_categories = ["waifu", "neko", "trap", "blowjob"]
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 # Kênh gửi ảnh tự động
-CHANNEL_ID = 1170009154648293388 # Thay thế bằng ID kênh mong muốn
+CHANNEL_ID = [1170009154648293388] # Thay thế bằng ID kênh mong muốn
 
 # --- Kênh cho phép cho command ---
 ALLOWED_CHANNEL_IDS = CHANNEL_ID # Thay thế bằng ID kênh mong muốn
