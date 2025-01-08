@@ -41,3 +41,4 @@ jobs:
         env:
           ANIME: ${{ secrets.ANIME }}
           HAITEN: ${{ secrets.HAITEN }}
+          WALL_TOKEN: ${{ secrets.WALL_TOKEN }}
