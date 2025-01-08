@@ -13,10 +13,8 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 CHANNEL_IDS = [1295014200967561328, 1295019163076530319, 1295293677828309032, 1170009154648293388, 1170681432776130650]  # WALL và MEME
 
 # ID của người dùng được phép gửi tin nhắn không phải ảnh
-ALLOWED_USER_IDS.append(1292398028887560193)  # Correctly initialize as an empty list
-
-# Add user IDs here, e.g.,
-# ALLOWED_USER_IDS.append(123456789012345678) # Replace with the actual ID of "niyakipham"
+ALLOWED_USER_IDS = []  # Define the list first
+ALLOWED_USER_IDS.append(1292398028887560193)  # Now you can append to it
 
 @bot.event
 async def on_message(message):
