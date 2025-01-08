@@ -10,11 +10,11 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # ID của kênh mà bot sẽ chỉ cho phép gửi ảnh
-CHANNEL_IDS = [1295014200967561328, 1295019163076530319, 1295293677828309032, 1170009154648293388, 1170681432776130650]  # WALL và MEME
+CHANNEL_IDS = [1294120124818653228]  # WALL và MEME
 
 # ID của người dùng được phép gửi tin nhắn không phải ảnh
-ALLOWED_USER_IDS = []  # Define the list first
-ALLOWED_USER_IDS.append(1292398028887560193)  # Now you can append to it
+ALLOWED_USER_IDS = [1292398028887560193]  # Define the list first
+  # Now you can append to it
 
 @bot.event
 async def on_message(message):
