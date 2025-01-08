@@ -5,7 +5,7 @@ import random, os
 
 # ID kênh mặc định để gửi ảnh
 
-KISS_ID  = 1294120125259186216
+KISS_ID  = 1170009154648293388
 
 # Danh sách các loại ảnh (sfw)
 haiten = ["waifu", "neko", "trap", "blowjob"]

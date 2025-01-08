@@ -10,10 +10,10 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # ID của kênh mà bot sẽ chỉ cho phép gửi ảnh
-CHANNEL_IDS = 1294120125259186216  # WALL và MEME
+CHANNEL_IDS = [1170009154648293388, 1170681432776130650]  # WALL và MEME
 
 # ID của người dùng được phép gửi tin nhắn không phải ảnh
-ALLOWED_USER_IDS = 1313490719398301697 # Thay thế bằng ID người dùng thực tế
+ALLOWED_USER_IDS =  # Thay thế bằng ID người dùng thực tế
 
 @bot.event
 async def on_message(message):
