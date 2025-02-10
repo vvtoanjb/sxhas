@@ -4,6 +4,7 @@ import pandas as pd
 from discord.ext import commands
 import re
 
+
 # --- Cấu hình ---
 BOT_TOKEN = "YOUR_BOT_TOKEN"  # Thay thế bằng token bot của bạn
 ANIME_CSV_FILE = 'anime.csv'
