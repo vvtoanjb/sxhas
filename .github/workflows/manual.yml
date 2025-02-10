@@ -37,10 +37,8 @@ jobs:
       - name: Deploy bot
         run: |
           python bot.py &
-          python haiten.py &
-          python dele.py & 
+          
           sleep 21600 # Giữ bot hoạt động trong 3600 giây (1 giờ)
         env:
           ANIME: ${{ secrets.ANIME }}
-          HAITEN: ${{ secrets.HAITEN }}
-          WALL_TOKEN: ${{ secrets.WALL_TOKEN }}
+       
